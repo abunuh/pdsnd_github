@@ -23,7 +23,7 @@ def get_filters():
         city = input('Enter city name, e.g. chicago, new york city or washington City: ').lower()
         #print(city)
         if city in cities:
-            print('Your city selection is: ', city)            
+            print('Your city selection is: {}'.format(city))
             break
         else:
             print('Please try again. \n')
@@ -35,7 +35,7 @@ def get_filters():
     while month not in months:
         month = input('Enter month e.g. all or january: ').lower()
         if month in months:
-            print('Your month selection is: ', month)
+            print('Your month selection is: {}'.format(month))
             break
         else:
             print('Please try again \n')
@@ -68,20 +68,20 @@ def load_data(city, month, day):
     """
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
-    
+
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # extract month, day of week and hour from Start Time to create new columns
     months = ['all', 'january','february', 'march', 'april', 'may', 'june', \
-              'july', 'august', 'september', 'october', 'november', 'december']    
+              'july', 'august', 'september', 'october', 'november', 'december']
     month_name = df['Start Time'].dt.month.apply(lambda x: months[x])
     #print("month from list = ", months[month_num][:3])
     df['month'] = month_name
     df['day_of_week'] = df['Start Time'].dt.weekday_name
     # extract hour from the Start Time column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
-    
+
     #print(df.head())
     #print("Month is : ", month)
     # filter by month if applicable
@@ -109,13 +109,13 @@ def load_data(city, month, day):
                 elif ans2.lower() == 'no':
                     break
                 else:
-                    print('Please try again.') 
+                    print('Please try again.')
             break
         elif ans1.lower() == 'no':
             break
         else:
             print('Please try again.')
-    
+
     return df
 
 
@@ -133,7 +133,7 @@ def time_stats(df):
 
     # display the most common start hour
     top_hr = df.hour.mode().iloc[0]
-    
+
     print("Most common month is :", top_month)
     print("Most common day is : ", top_day)
     print("Most common hour is : ", top_hr)
@@ -162,7 +162,7 @@ def station_stats(df):
     print("Most common start station is :", top_start_station)
     print("Most common end station is : ", top_end_station)
     print("Most common trip combination is : ", top_trip)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -179,7 +179,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Total traffic time = ', df.travel_time.sum())
     print('Mean travel time = ', df.travel_time.mean())
-          
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
