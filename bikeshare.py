@@ -27,7 +27,7 @@ def get_filters():
         city = input('Enter city name, e.g. chicago, new york city or washington City: ').lower()
         #print(city)
         if city in cities:
-            print('Your city selection is: ', city)
+            print('Your city selection is: {}'.format(city))
             break
         else:
             print('Please try again. \n')
@@ -39,7 +39,7 @@ def get_filters():
     while month not in months:
         month = input('Enter month e.g. all or january: ').lower()
         if month in months:
-            print('Your month selection is: ', month)
+            print('Your month selection is: {}'.format(month))
             break
         else:
             print('Please try again \n')
@@ -50,7 +50,7 @@ def get_filters():
     while day not in days:
         day = input('Enter day e.g. all or wednesday: ').lower()
         if day in days:
-            print('Your day selection is: ', day)
+            print('Your day selection is: {}'.format(day))
             break
         else:
             print('Please try again \n')
