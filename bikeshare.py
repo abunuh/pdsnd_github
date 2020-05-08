@@ -46,7 +46,7 @@ def get_filters():
     while day not in days:
         day = input('Enter day e.g. all or wednesday: ').lower()
         if day in days:
-            print('Your day selection is: ', day)
+            print('Your day selection is: {}'.format(day))
             break
         else:
             print('Please try again \n')
